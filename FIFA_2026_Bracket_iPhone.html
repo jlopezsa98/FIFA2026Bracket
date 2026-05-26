@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FIFA 2026 Bracket Entry</title>
+<style>
+:root{
+  --navy:#071829;--blue:#245d7f;--teal:#207f79;--gold:#c7a45a;--cream:#f7f3ea;
+  --ink:#13202d;--muted:#667085;--line:#d9e2ec;--card:#ffffff;--soft:#f7fafb;
+  --safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:linear-gradient(135deg,#fbfaf7,#eef6f7);color:var(--ink);font-size:16px;
+}
+header{
+  background:linear-gradient(135deg,#071829,#0f3048);color:white;
+  padding:calc(18px + var(--safe-top)) max(14px,env(safe-area-inset-left)) 16px max(14px,env(safe-area-inset-right));
+  box-shadow:0 12px 28px rgba(7,24,41,.22);position:relative;z-index:5;
+}
+.headerRow{display:grid;gap:12px;align-items:start}
+h1{margin:0;font-size:clamp(24px,8vw,38px);line-height:1.02;letter-spacing:-.045em}
+.sub{color:rgba(255,255,255,.78);margin-top:8px;max-width:760px;font-size:14px;line-height:1.35}
+#championBadge{
+  border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.11);border-radius:999px;
+  padding:9px 12px;font-weight:900;display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;font-size:14px;
+}
+main{max-width:1500px;margin:0 auto;padding:14px max(12px,env(safe-area-inset-left)) calc(92px + var(--safe-bottom)) max(12px,env(safe-area-inset-right))}
+#tabs{
+  display:flex;gap:8px;overflow-x:auto;flex-wrap:nowrap;padding:8px 2px 12px;margin:0 -2px 12px;
+  position:sticky;top:0;z-index:4;background:linear-gradient(180deg,rgba(247,250,251,.98),rgba(247,250,251,.92));
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);scrollbar-width:none;
+}
+#tabs::-webkit-scrollbar{display:none}
+button,.button{
+  border:1px solid var(--line);background:white;color:var(--navy);border-radius:999px;padding:10px 14px;
+  font-weight:850;cursor:pointer;box-shadow:0 6px 16px rgba(7,24,41,.08);transition:transform .12s,box-shadow .12s,background .12s;
+  min-height:44px;touch-action:manipulation;font-size:15px;white-space:nowrap;
+}
+button:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(7,24,41,.12)}
+button.active,.primary{background:linear-gradient(135deg,var(--blue),var(--teal));color:white;border-color:transparent}
+.gold{background:linear-gradient(135deg,#eedb9a,var(--gold));color:#35260b;border-color:transparent}.danger{color:#9f2f2f;background:#fff3f2}
+.tab{display:none}.tab.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:14px}
+.card{background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 14px 30px rgba(7,24,41,.08);margin-bottom:14px;overflow:hidden}
+h2{margin:0 0 12px;letter-spacing:-.03em;font-size:clamp(22px,6vw,30px);line-height:1.08}
+label{display:block;font-size:12px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+input,select{border:1px solid var(--line);border-radius:14px;background:white;padding:11px 12px;font:inherit;min-height:44px;max-width:100%}
+input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36,93,127,.14)}
+input[type=file]{width:100%;padding:10px;background:#fff}
+#participantName{width:100%;font-size:18px}.toolbar{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px;align-items:center}.small{font-size:14px;color:var(--muted);line-height:1.45}
+.match{border:1px solid var(--line);background:linear-gradient(180deg,#fff,#f9fbfb);border-radius:18px;padding:12px;margin:10px 0;overflow:hidden}
+.matchMeta{font-size:12px;color:var(--muted);margin-bottom:9px;line-height:1.35}.matchRow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center}.knockout .matchRow{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) minmax(200px,280px)}
+.team{display:flex;align-items:center;gap:8px;font-weight:850;min-width:0}.team.right{justify-content:flex-end;text-align:right}.teamName{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.team.right .teamName{order:0}
+.flag{display:inline-flex;align-items:center;justify-content:center;width:46px;height:30px;border-radius:8px;border:1px solid rgba(6,31,50,.18);box-shadow:0 4px 10px rgba(0,0,0,.11);overflow:hidden;position:relative;flex:0 0 auto;background:#e9eef2;color:#061f32;font-size:10px;font-weight:950;letter-spacing:.4px;text-shadow:0 1px 2px rgba(255,255,255,.75)}
+.flag::after{content:attr(data-code);position:absolute;inset:auto 0 0 0;text-align:center;font-size:8px;line-height:12px;background:rgba(255,255,255,.72);color:#061f32}
+.score{display:flex;align-items:center;gap:6px;justify-content:center}.score input{width:54px;text-align:center;font-size:18px;font-weight:900;padding-left:6px;padding-right:6px}.score span{color:var(--muted);font-weight:900}.vs{color:var(--muted);text-align:center}.placeholder{color:var(--muted);font-weight:800}
+.koPickBox{display:grid;gap:8px;background:rgba(238,246,247,.65);border:1px solid rgba(217,226,236,.8);border-radius:16px;padding:10px}.koScoreLabel{font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em}.koScoreRow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.koScoreRow .score{gap:6px}.koScoreRow input{width:54px}.koSelect{width:100%;min-width:0}.koHint{font-size:12px;color:var(--muted);line-height:1.25}
+.standing{display:grid;grid-template-columns:28px minmax(0,1fr) 42px 40px 40px 40px;gap:7px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0}.standing.head{font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase}.standingsCard .team{font-size:14px}
+.error{display:none;background:#fff1f0;border:1px solid #f0b8b8;color:#7a1f1f;border-radius:16px;padding:12px;margin-bottom:14px;white-space:pre-wrap}#toast{position:fixed;left:50%;bottom:calc(18px + var(--safe-bottom));transform:translateX(-50%) translateY(30px);background:var(--navy);color:white;padding:12px 16px;border-radius:999px;box-shadow:0 14px 38px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:.2s;z-index:20;max-width:calc(100vw - 24px);text-align:center}#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(min-width:760px){header{padding:26px clamp(16px,4vw,48px)}.headerRow{display:flex;justify-content:space-between;align-items:center;gap:18px}main{padding:22px clamp(14px,3vw,44px) 70px}#tabs{flex-wrap:wrap;overflow:visible;position:static;background:transparent;backdrop-filter:none}.card{padding:18px}.flag{width:52px;height:34px}.score input{width:62px}}
+@media(max-width:640px){
+  .toolbar{display:grid;grid-template-columns:1fr}.toolbar h2{margin-right:0!important}.toolbar button{width:100%}
+  .matchRow{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px}.team{gap:6px;font-size:14px}.flag{width:34px;height:23px;border-radius:6px}.teamName{max-width:100%}.score input{width:44px;min-height:40px;font-size:17px}.match{padding:11px}.matchMeta{font-size:11px}
+  .knockout .matchRow{grid-template-columns:1fr;gap:8px}.knockout .team.right{justify-content:flex-start;text-align:left}.knockout .vs{display:none}.koPickBox{margin-top:2px}
+  .standing{grid-template-columns:24px minmax(0,1fr) 34px 34px 34px 34px;gap:5px;font-size:13px}.standing.head{font-size:10px}.standingsCard .team{font-size:13px}
+  #championBadge .flag{width:30px;height:20px}button,.button{font-size:14px;padding:9px 12px}.card{border-radius:20px;padding:14px}main{padding-top:10px}
+}
+@media(max-width:370px){.team{font-size:13px}.score input{width:40px}.flag{width:30px;height:20px}.matchRow{gap:5px}.standing{font-size:12px;grid-template-columns:22px minmax(0,1fr) 32px 32px 32px 32px}}
+</style>
+</head>
+<body>
+<header><div class="headerRow"><div><h1>FIFA 2026 Bracket Entry</h1><div class="sub">Open this file in any browser, enter predictions, then export the CSV for the macOS app.</div></div><div id="championBadge">No champion picked</div></div></header>
+<main>
+<div id="errorBox" class="error"></div>
+<nav id="tabs"><button type="button" class="tabButton active" data-tab="setup">Setup</button><button type="button" class="tabButton" data-tab="groups">Group Scores</button><button type="button" class="tabButton" data-tab="standings">Standings</button><button type="button" class="tabButton" data-tab="knockout">Knockout Picks</button><button type="button" class="tabButton" data-tab="export">Export</button></nav>
+<section id="setup" class="tab active"><div class="grid"><div class="card"><h2>1. Enter your name</h2><label for="participantName">Participant name</label><input id="participantName" placeholder="Example: Marcus"><div class="toolbar"><button type="button" id="saveName" class="primary">Save name</button><button type="button" id="randomAll" class="gold">Autopopulate random bracket</button><button type="button" id="clearAll" class="danger">Clear all</button></div><p class="small">Fill group scores first. Knockout teams populate from your predicted group standings.</p></div><div class="card"><h2>Open a saved submission</h2><p class="small">Upload a CSV that was exported from this form. This is useful if a player wants to keep editing their own bracket later.</p><label for="csvUpload">CSV file</label><input id="csvUpload" type="file" accept=".csv,text/csv"><label style="display:flex;align-items:center;gap:8px;margin-top:12px;text-transform:none;letter-spacing:0;font-size:14px"><input id="useNameFromFile" type="checkbox" checked style="width:auto">Use participant name from file</label><div class="toolbar"><button type="button" id="loadCSV" class="primary">Load CSV into form</button></div><p class="small">If unchecked, the uploaded predictions load into the name currently typed above.</p></div><div class="card"><h2>How to submit</h2><p class="small">Enter your name, fill group scores, pick knockout winners, then export CSV and send it to the pool organizer. The Mac app can import that CSV into the player named in the Participant column, or into a selected player.</p></div></div></section>
+<section id="groups" class="tab"><div class="toolbar" style="margin-bottom:14px"><h2 style="margin-right:auto">Group Stage Predictions</h2><button type="button" id="randomGroups" class="gold">Random group scores</button></div><div id="groupsContainer"></div></section>
+<section id="standings" class="tab"><div class="toolbar" style="margin-bottom:14px"><h2 style="margin-right:auto">Predicted Group Standings</h2><button type="button" id="refreshStandings">Refresh standings</button></div><div id="standingsContainer" class="grid"></div></section>
+<section id="knockout" class="tab"><div class="toolbar" style="margin-bottom:14px"><h2 style="margin-right:auto">Knockout Picks</h2><button type="button" id="randomKnockout" class="gold">Random knockout picks + optional scores</button></div><div id="knockoutContainer"></div></section>
+<section id="export" class="tab"><div class="grid"><div class="card"><h2>Export for the app</h2><p class="small">This exports the exact columns your app expects.</p><div class="toolbar"><button type="button" id="shareCSV" class="primary">Share Submission</button><button type="button" id="downloadCSV">Download CSV</button><button type="button" id="downloadJSON">Download JSON backup</button><button type="button" id="copyCSV">Copy CSV</button></div><p class="small">On iPhone, tap Share Submission, then send the CSV through Messages, Mail, WhatsApp, AirDrop, or save it to Files.</p></div><div class="card"><h2>Completion check</h2><div id="completion"></div></div></div></section>
+</main><div id="toast"></div>
+<script>
+
+(function(){
+  'use strict';
+  const T = {"id":"63f4c83b-aa97-484a-8167-75a82359af96","name":"FIFA World Cup 2026","groups":[{"id":"A","name":"Group A","teamIDs":["A1","A2","A3","A4"]},{"id":"B","name":"Group B","teamIDs":["B1","B2","B3","B4"]},{"id":"C","name":"Group C","teamIDs":["C1","C2","C3","C4"]},{"id":"D","name":"Group D","teamIDs":["D1","D2","D3","D4"]},{"id":"E","name":"Group E","teamIDs":["E1","E2","E3","E4"]},{"id":"F","name":"Group F","teamIDs":["F1","F2","F3","F4"]},{"id":"G","name":"Group G","teamIDs":["G1","G2","G3","G4"]},{"id":"H","name":"Group H","teamIDs":["H1","H2","H3","H4"]},{"id":"I","name":"Group I","teamIDs":["I1","I2","I3","I4"]},{"id":"J","name":"Group J","teamIDs":["J1","J2","J3","J4"]},{"id":"K","name":"Group K","teamIDs":["K1","K2","K3","K4"]},{"id":"L","name":"Group L","teamIDs":["L1","L2","L3","L4"]}],"teams":[{"id":"A1","name":"Mexico","groupID":"A","seed":1},{"id":"A2","name":"South Africa","groupID":"A","seed":2},{"id":"A3","name":"Rep. of Korea","groupID":"A","seed":3},{"id":"A4","name":"Czech Rep.","groupID":"A","seed":4},{"id":"B1","name":"Canada","groupID":"B","seed":1},{"id":"B2","name":"Bosnia/Herzeg.","groupID":"B","seed":2},{"id":"B3","name":"Qatar","groupID":"B","seed":3},{"id":"B4","name":"Switzerland","groupID":"B","seed":4},{"id":"C1","name":"Brazil","groupID":"C","seed":1},{"id":"C2","name":"Morocco","groupID":"C","seed":2},{"id":"C3","name":"Haiti","groupID":"C","seed":3},{"id":"C4","name":"Scotland","groupID":"C","seed":4},{"id":"D1","name":"USA","groupID":"D","seed":1},{"id":"D2","name":"Paraguay","groupID":"D","seed":2},{"id":"D3","name":"Australia","groupID":"D","seed":3},{"id":"D4","name":"Turkey","groupID":"D","seed":4},{"id":"E1","name":"Germany","groupID":"E","seed":1},{"id":"E2","name":"Curaçao","groupID":"E","seed":2},{"id":"E3","name":"Ivory Coast","groupID":"E","seed":3},{"id":"E4","name":"Ecuador","groupID":"E","seed":4},{"id":"F1","name":"Netherlands","groupID":"F","seed":1},{"id":"F2","name":"Japan","groupID":"F","seed":2},{"id":"F3","name":"Sweden","groupID":"F","seed":3},{"id":"F4","name":"Tunisia","groupID":"F","seed":4},{"id":"G1","name":"Belgium","groupID":"G","seed":1},{"id":"G2","name":"Egypt","groupID":"G","seed":2},{"id":"G3","name":"IR Iran","groupID":"G","seed":3},{"id":"G4","name":"New Zealand","groupID":"G","seed":4},{"id":"H1","name":"Spain","groupID":"H","seed":1},{"id":"H2","name":"Cape Verde","groupID":"H","seed":2},{"id":"H3","name":"Saudi Arabia","groupID":"H","seed":3},{"id":"H4","name":"Uruguay","groupID":"H","seed":4},{"id":"I1","name":"France","groupID":"I","seed":1},{"id":"I2","name":"Senegal","groupID":"I","seed":2},{"id":"I3","name":"Iraq","groupID":"I","seed":3},{"id":"I4","name":"Norway","groupID":"I","seed":4},{"id":"J1","name":"Argentina","groupID":"J","seed":1},{"id":"J2","name":"Algeria","groupID":"J","seed":2},{"id":"J3","name":"Austria","groupID":"J","seed":3},{"id":"J4","name":"Jordan","groupID":"J","seed":4},{"id":"K1","name":"Portugal","groupID":"K","seed":1},{"id":"K2","name":"DR Congo","groupID":"K","seed":2},{"id":"K3","name":"Uzbekistan","groupID":"K","seed":3},{"id":"K4","name":"Colombia","groupID":"K","seed":4},{"id":"L1","name":"England","groupID":"L","seed":1},{"id":"L2","name":"Croatia","groupID":"L","seed":2},{"id":"L3","name":"Ghana","groupID":"L","seed":3},{"id":"L4","name":"Panama","groupID":"L","seed":4}],"matches":[{"id":"bbbe963c-07a0-4861-82f5-4793696f3ac3","matchNumber":1,"stage":"group","groupID":"A","team1Ref":"A1","team2Ref":"A2","team1Name":"Mexico","team2Name":"South Africa","dateText":"Jun 11, 2026 3:00 PM","venue":"Mexico City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0883faac-5974-4e43-9452-f0049b43306d","matchNumber":2,"stage":"group","groupID":"A","team1Ref":"A3","team2Ref":"A4","team1Name":"Rep. of Korea","team2Name":"Czech Rep.","dateText":"Jun 11, 2026 10:00 PM","venue":"Guadalajara","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"ae26b07d-aa1a-4a81-80e1-07e143048842","matchNumber":3,"stage":"group","groupID":"B","team1Ref":"B1","team2Ref":"B2","team1Name":"Canada","team2Name":"Bosnia/Herzeg.","dateText":"Jun 12, 2026 3:00 PM","venue":"Toronto","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0b4f613b-1a1b-49d6-9e8e-5ad7f6135562","matchNumber":4,"stage":"group","groupID":"D","team1Ref":"D1","team2Ref":"D2","team1Name":"USA","team2Name":"Paraguay","dateText":"Jun 12, 2026 9:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"dbfa0da3-4a1f-4a8a-9a2a-3c27820b49f4","matchNumber":5,"stage":"group","groupID":"C","team1Ref":"C3","team2Ref":"C4","team1Name":"Haiti","team2Name":"Scotland","dateText":"Jun 13, 2026 9:00 PM","venue":"Boston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"1d04e8ce-9f1a-4081-97f3-416cc43fe932","matchNumber":6,"stage":"group","groupID":"D","team1Ref":"D3","team2Ref":"D4","team1Name":"Australia","team2Name":"Turkey","dateText":"Jun 14, 2026 12:00 AM","venue":"Vancouver","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"e2479f83-c78e-4938-98cc-30999c33dbe2","matchNumber":7,"stage":"group","groupID":"C","team1Ref":"C1","team2Ref":"C2","team1Name":"Brazil","team2Name":"Morocco","dateText":"Jun 13, 2026 6:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"c0184c1a-6bb4-4a9d-b2bf-4f884d3b3f96","matchNumber":8,"stage":"group","groupID":"B","team1Ref":"B3","team2Ref":"B4","team1Name":"Qatar","team2Name":"Switzerland","dateText":"Jun 13, 2026 3:00 PM","venue":"San Francisco Bay Area","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"1d0bdd7d-6b6c-4dbd-83ca-f18f3ddec549","matchNumber":9,"stage":"group","groupID":"E","team1Ref":"E3","team2Ref":"E4","team1Name":"Ivory Coast","team2Name":"Ecuador","dateText":"Jun 14, 2026 7:00 PM","venue":"Philadelphia","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0e05de7c-a35d-47fc-a0a1-4926094a4e00","matchNumber":10,"stage":"group","groupID":"E","team1Ref":"E1","team2Ref":"E2","team1Name":"Germany","team2Name":"Curaçao","dateText":"Jun 14, 2026 1:00 PM","venue":"Houston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"5b93a8ba-964e-4197-8232-013cd6757b3c","matchNumber":11,"stage":"group","groupID":"F","team1Ref":"F1","team2Ref":"F2","team1Name":"Netherlands","team2Name":"Japan","dateText":"Jun 14, 2026 4:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"656f43c0-9dfe-4053-b022-bd1310d29589","matchNumber":12,"stage":"group","groupID":"F","team1Ref":"F3","team2Ref":"F4","team1Name":"Sweden","team2Name":"Tunisia","dateText":"Jun 14, 2026 10:00 PM","venue":"Monterrey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"d8c014d2-a1ac-4bd8-a942-897cc9c5db2d","matchNumber":13,"stage":"group","groupID":"H","team1Ref":"H3","team2Ref":"H4","team1Name":"Saudi Arabia","team2Name":"Uruguay","dateText":"Jun 15, 2026 6:00 PM","venue":"Miami","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"7185e904-57bd-4ba4-80d7-64423292242b","matchNumber":14,"stage":"group","groupID":"H","team1Ref":"H1","team2Ref":"H2","team1Name":"Spain","team2Name":"Cape Verde","dateText":"Jun 15, 2026 12:00 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"3c606f5a-908c-4165-be82-acf5aec57bbb","matchNumber":15,"stage":"group","groupID":"G","team1Ref":"G3","team2Ref":"G4","team1Name":"IR Iran","team2Name":"New Zealand","dateText":"Jun 15, 2026 9:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"c4729c09-ed12-4c51-8d16-7b02632d423e","matchNumber":16,"stage":"group","groupID":"G","team1Ref":"G1","team2Ref":"G2","team1Name":"Belgium","team2Name":"Egypt","dateText":"Jun 15, 2026 3:00 PM","venue":"Seattle","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"5296604c-1584-4b32-9e8c-b0064c2d7475","matchNumber":17,"stage":"group","groupID":"I","team1Ref":"I1","team2Ref":"I2","team1Name":"France","team2Name":"Senegal","dateText":"Jun 16, 2026 3:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"ccd9aae8-525c-4d1c-b344-c060f96e0ac2","matchNumber":18,"stage":"group","groupID":"I","team1Ref":"I3","team2Ref":"I4","team1Name":"Iraq","team2Name":"Norway","dateText":"Jun 16, 2026 6:00 PM","venue":"Boston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"793916d4-41fe-4d39-99ba-714bf4d85945","matchNumber":19,"stage":"group","groupID":"J","team1Ref":"J1","team2Ref":"J2","team1Name":"Argentina","team2Name":"Algeria","dateText":"Jun 16, 2026 9:00 PM","venue":"Kansas City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"7667d10d-5f82-4674-9e45-45858cd6033c","matchNumber":20,"stage":"group","groupID":"J","team1Ref":"J3","team2Ref":"J4","team1Name":"Austria","team2Name":"Jordan","dateText":"Jun 17, 2026 12:00 AM","venue":"San Francisco Bay Area","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"41654fbc-126e-4c13-8c02-ded2cf6e841e","matchNumber":21,"stage":"group","groupID":"L","team1Ref":"L3","team2Ref":"L4","team1Name":"Ghana","team2Name":"Panama","dateText":"Jun 17, 2026 7:00 PM","venue":"Toronto","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"c41ad4f8-0008-4bbc-b931-3f2f5e31a8ef","matchNumber":22,"stage":"group","groupID":"L","team1Ref":"L1","team2Ref":"L2","team1Name":"England","team2Name":"Croatia","dateText":"Jun 17, 2026 4:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"9b1b7a3d-09f9-43c7-b8a0-ef0dac8a4893","matchNumber":23,"stage":"group","groupID":"K","team1Ref":"K1","team2Ref":"K2","team1Name":"Portugal","team2Name":"DR Congo","dateText":"Jun 17, 2026 1:00 PM","venue":"Houston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"d9182b24-11a5-4a72-911c-ee893129d4cc","matchNumber":24,"stage":"group","groupID":"K","team1Ref":"K3","team2Ref":"K4","team1Name":"Uzbekistan","team2Name":"Colombia","dateText":"Jun 17, 2026 10:00 PM","venue":"Mexico City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"d5f115a6-9cbe-460b-841b-927b7d4a3e04","matchNumber":25,"stage":"group","groupID":"A","team1Ref":"A4","team2Ref":"A2","team1Name":"Czech Rep.","team2Name":"South Africa","dateText":"Jun 18, 2026 12:00 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"30f2bc13-babe-4548-b495-3632e2b47770","matchNumber":26,"stage":"group","groupID":"B","team1Ref":"B4","team2Ref":"B2","team1Name":"Switzerland","team2Name":"Bosnia/Herzeg.","dateText":"Jun 18, 2026 3:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"e65b46f2-81d7-4e27-ba7d-3215a6b49b77","matchNumber":27,"stage":"group","groupID":"B","team1Ref":"B1","team2Ref":"B3","team1Name":"Canada","team2Name":"Qatar","dateText":"Jun 18, 2026 6:00 PM","venue":"Vancouver","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"247940d5-e460-4f3a-9f7e-ca5a97a188e6","matchNumber":28,"stage":"group","groupID":"A","team1Ref":"A1","team2Ref":"A3","team1Name":"Mexico","team2Name":"Rep. of Korea","dateText":"Jun 18, 2026 9:00 PM","venue":"Guadalajara","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"b3f3ac0e-1d9a-4ae0-be29-b65031d61cfe","matchNumber":29,"stage":"group","groupID":"C","team1Ref":"C1","team2Ref":"C3","team1Name":"Brazil","team2Name":"Haiti","dateText":"Jun 19, 2026 8:30 PM","venue":"Philadelphia","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"2d7cc24a-ff98-49e8-a9ec-134d61abae35","matchNumber":30,"stage":"group","groupID":"C","team1Ref":"C4","team2Ref":"C2","team1Name":"Scotland","team2Name":"Morocco","dateText":"Jun 19, 2026 6:00 PM","venue":"Boston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"423ac8d0-8940-4def-9622-314deb4b9734","matchNumber":31,"stage":"group","groupID":"D","team1Ref":"D4","team2Ref":"D2","team1Name":"Turkey","team2Name":"Paraguay","dateText":"Jun 19, 2026 11:00 PM","venue":"San Francisco Bay Area","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"1acd0aa9-08da-4ebe-98d4-f96bc97ab1f7","matchNumber":32,"stage":"group","groupID":"D","team1Ref":"D1","team2Ref":"D3","team1Name":"USA","team2Name":"Australia","dateText":"Jun 19, 2026 3:00 PM","venue":"Seattle","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"7118075a-d7cd-4496-ac4d-efb3a44c72bd","matchNumber":33,"stage":"group","groupID":"E","team1Ref":"E1","team2Ref":"E3","team1Name":"Germany","team2Name":"Ivory Coast","dateText":"Jun 20, 2026 4:00 PM","venue":"Toronto","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"70b68762-c856-4910-bec4-f74a5462ec29","matchNumber":34,"stage":"group","groupID":"E","team1Ref":"E4","team2Ref":"E2","team1Name":"Ecuador","team2Name":"Curaçao","dateText":"Jun 20, 2026 8:00 PM","venue":"Kansas City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"3dcf7daf-4d74-4019-96f7-1b5fe0dd12ca","matchNumber":35,"stage":"group","groupID":"F","team1Ref":"F1","team2Ref":"F3","team1Name":"Netherlands","team2Name":"Sweden","dateText":"Jun 20, 2026 1:00 PM","venue":"Houston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"663e7591-e737-460c-8d80-ef7e270a57e2","matchNumber":36,"stage":"group","groupID":"F","team1Ref":"F4","team2Ref":"F2","team1Name":"Tunisia","team2Name":"Japan","dateText":"Jun 21, 2026 12:00 AM","venue":"Monterrey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"07f88f3c-84f2-43fa-95c6-8071b62464b8","matchNumber":37,"stage":"group","groupID":"H","team1Ref":"H4","team2Ref":"H2","team1Name":"Uruguay","team2Name":"Cape Verde","dateText":"Jun 21, 2026 6:00 PM","venue":"Miami","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"c6da50a4-3898-4b3b-bbed-4c30446f02f3","matchNumber":38,"stage":"group","groupID":"H","team1Ref":"H1","team2Ref":"H3","team1Name":"Spain","team2Name":"Saudi Arabia","dateText":"Jun 21, 2026 12:00 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"164662cb-5e84-4f12-a9b3-d886f029da60","matchNumber":39,"stage":"group","groupID":"G","team1Ref":"G1","team2Ref":"G3","team1Name":"Belgium","team2Name":"IR Iran","dateText":"Jun 21, 2026 3:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"277a078a-9176-4360-9a2f-85d681ce3ea4","matchNumber":40,"stage":"group","groupID":"G","team1Ref":"G4","team2Ref":"G2","team1Name":"New Zealand","team2Name":"Egypt","dateText":"Jun 21, 2026 9:00 PM","venue":"Vancouver","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"8d6ac6f8-cdae-4a02-8d27-bbd5975513bb","matchNumber":41,"stage":"group","groupID":"I","team1Ref":"I4","team2Ref":"I2","team1Name":"Norway","team2Name":"Senegal","dateText":"Jun 22, 2026 8:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"f18df9fb-3645-4e2e-a21b-539ab712d5fe","matchNumber":42,"stage":"group","groupID":"I","team1Ref":"I1","team2Ref":"I3","team1Name":"France","team2Name":"Iraq","dateText":"Jun 22, 2026 5:00 PM","venue":"Philadelphia","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"630fe0aa-8ef1-483f-970b-b06b88befe5b","matchNumber":43,"stage":"group","groupID":"J","team1Ref":"J1","team2Ref":"J3","team1Name":"Argentina","team2Name":"Austria","dateText":"Jun 22, 2026 1:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"319e392c-20fd-4535-ad22-0d67ea39f98b","matchNumber":44,"stage":"group","groupID":"J","team1Ref":"J4","team2Ref":"J2","team1Name":"Jordan","team2Name":"Algeria","dateText":"Jun 22, 2026 11:00 PM","venue":"San Francisco Bay Area","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"86c5d15a-37eb-4e2b-b4aa-b128ee856363","matchNumber":45,"stage":"group","groupID":"L","team1Ref":"L1","team2Ref":"L3","team1Name":"England","team2Name":"Ghana","dateText":"Jun 23, 2026 4:00 PM","venue":"Boston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"94e93ff3-969c-46ee-882e-9b0c7d6237b0","matchNumber":46,"stage":"group","groupID":"L","team1Ref":"L4","team2Ref":"L2","team1Name":"Panama","team2Name":"Croatia","dateText":"Jun 23, 2026 7:00 PM","venue":"Toronto","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"f9a5dd27-f982-4b52-967a-8058f910147b","matchNumber":47,"stage":"group","groupID":"K","team1Ref":"K1","team2Ref":"K3","team1Name":"Portugal","team2Name":"Uzbekistan","dateText":"Jun 23, 2026 1:00 PM","venue":"Houston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0a7d9d31-2c79-41f7-81fc-ca869b013f38","matchNumber":48,"stage":"group","groupID":"K","team1Ref":"K4","team2Ref":"K2","team1Name":"Colombia","team2Name":"DR Congo","dateText":"Jun 23, 2026 10:00 PM","venue":"Guadalajara","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"09130f01-81ff-418e-8e19-327f5bd996da","matchNumber":49,"stage":"group","groupID":"C","team1Ref":"C4","team2Ref":"C1","team1Name":"Scotland","team2Name":"Brazil","dateText":"Jun 24, 2026 6:00 PM","venue":"Miami","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"fa00f0d0-7013-4df5-b00a-df4fdb61e86e","matchNumber":50,"stage":"group","groupID":"C","team1Ref":"C2","team2Ref":"C3","team1Name":"Morocco","team2Name":"Haiti","dateText":"Jun 24, 2026 6:00 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"368444f5-605d-4ae8-ae22-0326442d532b","matchNumber":51,"stage":"group","groupID":"B","team1Ref":"B4","team2Ref":"B1","team1Name":"Switzerland","team2Name":"Canada","dateText":"Jun 24, 2026 3:00 PM","venue":"Vancouver","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"db36cbf7-9998-4cf8-970c-895fc5a3b5cb","matchNumber":52,"stage":"group","groupID":"B","team1Ref":"B2","team2Ref":"B3","team1Name":"Bosnia/Herzeg.","team2Name":"Qatar","dateText":"Jun 24, 2026 3:00 PM","venue":"Seattle","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0d9346e3-6d47-4bc7-94a8-628a893e518c","matchNumber":53,"stage":"group","groupID":"A","team1Ref":"A4","team2Ref":"A1","team1Name":"Czech Rep.","team2Name":"Mexico","dateText":"Jun 24, 2026 9:00 PM","venue":"Mexico City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"541b38f2-be01-4746-9ce5-93065a4d6249","matchNumber":54,"stage":"group","groupID":"A","team1Ref":"A2","team2Ref":"A3","team1Name":"South Africa","team2Name":"Rep. of Korea","dateText":"Jun 24, 2026 9:00 PM","venue":"Monterrey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"72590945-621c-4eae-ba22-5110b0d98583","matchNumber":55,"stage":"group","groupID":"E","team1Ref":"E2","team2Ref":"E3","team1Name":"Curaçao","team2Name":"Ivory Coast","dateText":"Jun 25, 2026 4:00 PM","venue":"Philadelphia","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"eeb09c47-d778-4fdd-9978-766ec5fd8976","matchNumber":56,"stage":"group","groupID":"E","team1Ref":"E4","team2Ref":"E1","team1Name":"Ecuador","team2Name":"Germany","dateText":"Jun 25, 2026 4:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"cbc7befe-4aef-4cdd-a5d0-7f19cf3a7d9f","matchNumber":57,"stage":"group","groupID":"F","team1Ref":"F2","team2Ref":"F3","team1Name":"Japan","team2Name":"Sweden","dateText":"Jun 25, 2026 7:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"3b5e8279-bc27-47be-8c21-b9f7559cf3dc","matchNumber":58,"stage":"group","groupID":"F","team1Ref":"F4","team2Ref":"F1","team1Name":"Tunisia","team2Name":"Netherlands","dateText":"Jun 25, 2026 7:00 PM","venue":"Kansas City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"ca4aaf70-1d8f-4135-be8d-561bf084c3e9","matchNumber":59,"stage":"group","groupID":"D","team1Ref":"D4","team2Ref":"D1","team1Name":"Turkey","team2Name":"USA","dateText":"Jun 25, 2026 10:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"9ea45e64-2cb3-4321-bf44-d891a2bb453d","matchNumber":60,"stage":"group","groupID":"D","team1Ref":"D2","team2Ref":"D3","team1Name":"Paraguay","team2Name":"Australia","dateText":"Jun 25, 2026 10:00 PM","venue":"San Francisco Bay Area","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"4729009e-89f8-43f9-a6f4-84d8b02113b9","matchNumber":61,"stage":"group","groupID":"I","team1Ref":"I4","team2Ref":"I1","team1Name":"Norway","team2Name":"France","dateText":"Jun 26, 2026 3:00 PM","venue":"Boston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"06066640-8434-4be8-abeb-29a5f3876d69","matchNumber":62,"stage":"group","groupID":"I","team1Ref":"I2","team2Ref":"I3","team1Name":"Senegal","team2Name":"Iraq","dateText":"Jun 26, 2026 3:00 PM","venue":"Toronto","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"a5c79689-ee62-4b02-85e1-88114c024ef2","matchNumber":63,"stage":"group","groupID":"G","team1Ref":"G2","team2Ref":"G3","team1Name":"Egypt","team2Name":"IR Iran","dateText":"Jun 26, 2026 11:00 PM","venue":"Seattle","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"65b220b5-00af-4ee9-bce6-5fa88d424d5c","matchNumber":64,"stage":"group","groupID":"G","team1Ref":"G4","team2Ref":"G1","team1Name":"New Zealand","team2Name":"Belgium","dateText":"Jun 26, 2026 11:00 PM","venue":"Vancouver","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"32426cc0-a40d-4b5e-9219-052d8de05049","matchNumber":65,"stage":"group","groupID":"H","team1Ref":"H2","team2Ref":"H3","team1Name":"Cape Verde","team2Name":"Saudi Arabia","dateText":"Jun 26, 2026 8:00 PM","venue":"Houston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"65871209-0a79-46fe-959a-0ed11dfbea18","matchNumber":66,"stage":"group","groupID":"H","team1Ref":"H4","team2Ref":"H1","team1Name":"Uruguay","team2Name":"Spain","dateText":"Jun 26, 2026 8:00 PM","venue":"Guadalajara","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"6c8c1a82-fad4-40c4-8aa4-04f5bd051c4a","matchNumber":67,"stage":"group","groupID":"L","team1Ref":"L4","team2Ref":"L1","team1Name":"Panama","team2Name":"England","dateText":"Jun 27, 2026 5:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"17c70204-e6fc-4004-889b-466e0e44f682","matchNumber":68,"stage":"group","groupID":"L","team1Ref":"L2","team2Ref":"L3","team1Name":"Croatia","team2Name":"Ghana","dateText":"Jun 27, 2026 5:00 PM","venue":"Philadelphia","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"e6cd13bf-707e-4e07-acbb-818ce091150c","matchNumber":69,"stage":"group","groupID":"J","team1Ref":"J2","team2Ref":"J3","team1Name":"Algeria","team2Name":"Austria","dateText":"Jun 27, 2026 10:00 PM","venue":"Kansas City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"2da503ac-3fa2-4cfe-974f-c4f21c555f06","matchNumber":70,"stage":"group","groupID":"J","team1Ref":"J4","team2Ref":"J1","team1Name":"Jordan","team2Name":"Argentina","dateText":"Jun 27, 2026 10:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0c4802fe-ab3c-4689-a6f7-23cf9e36a4d7","matchNumber":71,"stage":"group","groupID":"K","team1Ref":"K4","team2Ref":"K1","team1Name":"Colombia","team2Name":"Portugal","dateText":"Jun 27, 2026 7:30 PM","venue":"Miami","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"4164bbd5-40dd-494b-8363-115a00c02ed2","matchNumber":72,"stage":"group","groupID":"K","team1Ref":"K2","team2Ref":"K3","team1Name":"DR Congo","team2Name":"Uzbekistan","dateText":"Jun 27, 2026 7:30 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"7692d7c0-befb-4ffb-803b-30f31ab08759","matchNumber":73,"stage":"roundOf32","groupID":null,"team1Ref":"2A","team2Ref":"2B","team1Name":"2A","team2Name":"2B","dateText":"Jun 28, 2026 3:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"63d3d221-4107-47f6-89d9-04dd47ce67ca","matchNumber":74,"stage":"roundOf32","groupID":null,"team1Ref":"1E","team2Ref":"3-ABCDF","team1Name":"1E","team2Name":"3-ABCDF","dateText":"Jun 29, 2026 4:30 PM","venue":"Boston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"59dae090-01d9-48c6-8a40-7ebd847bb297","matchNumber":75,"stage":"roundOf32","groupID":null,"team1Ref":"1F","team2Ref":"2C","team1Name":"1F","team2Name":"2C","dateText":"Jun 29, 2026 9:00 PM","venue":"Monterrey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"081e9e3d-b5ed-4687-990b-b73a01ae382f","matchNumber":76,"stage":"roundOf32","groupID":null,"team1Ref":"1C","team2Ref":"2F","team1Name":"1C","team2Name":"2F","dateText":"Jun 29, 2026 1:00 PM","venue":"Houston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"89572940-6607-47ac-a850-78f324a9a96d","matchNumber":77,"stage":"roundOf32","groupID":null,"team1Ref":"1I","team2Ref":"3-CDFGH","team1Name":"1I","team2Name":"3-CDFGH","dateText":"Jun 30, 2026 5:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"c5ac0141-34eb-47fd-9171-0a8d6be44b11","matchNumber":78,"stage":"roundOf32","groupID":null,"team1Ref":"2E","team2Ref":"2I","team1Name":"2E","team2Name":"2I","dateText":"Jun 30, 2026 1:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"871f63b4-6949-43d4-97fd-41ee302c180e","matchNumber":79,"stage":"roundOf32","groupID":null,"team1Ref":"1A","team2Ref":"3-CEFHI","team1Name":"1A","team2Name":"3-CEFHI","dateText":"Jun 30, 2026 9:00 PM","venue":"Mexico City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"f1bf49e0-6069-4349-b81d-40357854b434","matchNumber":80,"stage":"roundOf32","groupID":null,"team1Ref":"1L","team2Ref":"3-EHIJK","team1Name":"1L","team2Name":"3-EHIJK","dateText":"Jul 1, 2026 12:00 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"fb08b7d2-963f-48f7-bed5-fd8f5aeb41eb","matchNumber":81,"stage":"roundOf32","groupID":null,"team1Ref":"1D","team2Ref":"3-BEFIJ","team1Name":"1D","team2Name":"3-BEFIJ","dateText":"Jul 1, 2026 8:00 PM","venue":"San Francisco Bay Area","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"6d64b135-9a4b-424e-b438-5bf870ff73cf","matchNumber":82,"stage":"roundOf32","groupID":null,"team1Ref":"1G","team2Ref":"3-AEHIJ","team1Name":"1G","team2Name":"3-AEHIJ","dateText":"Jul 1, 2026 4:00 PM","venue":"Seattle","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"819a7f56-4d84-442d-b722-f85f27c5eead","matchNumber":83,"stage":"roundOf32","groupID":null,"team1Ref":"2K","team2Ref":"2L","team1Name":"2K","team2Name":"2L","dateText":"Jul 2, 2026 7:00 PM","venue":"Toronto","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"752ea788-af8f-4771-8b2b-6a135cc6494c","matchNumber":84,"stage":"roundOf32","groupID":null,"team1Ref":"1H","team2Ref":"2J","team1Name":"1H","team2Name":"2J","dateText":"Jul 2, 2026 3:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"304299ac-03fc-413f-93d4-ef35d9b0cfc0","matchNumber":85,"stage":"roundOf32","groupID":null,"team1Ref":"1B","team2Ref":"3-EFGIJ","team1Name":"1B","team2Name":"3-EFGIJ","dateText":"Jul 2, 2026 11:00 PM","venue":"Vancouver","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"12141891-ab1f-4b85-bbef-fe3b86f7a2f6","matchNumber":86,"stage":"roundOf32","groupID":null,"team1Ref":"1J","team2Ref":"2H","team1Name":"1J","team2Name":"2H","dateText":"Jul 3, 2026 6:00 PM","venue":"Miami","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"e5488ee7-cb2f-45a4-adbd-7b67498032cf","matchNumber":87,"stage":"roundOf32","groupID":null,"team1Ref":"1K","team2Ref":"3-DEIJL","team1Name":"1K","team2Name":"3-DEIJL","dateText":"Jul 3, 2026 9:30 PM","venue":"Kansas City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"2ffc5569-7ffa-4dec-82b7-2ca683f63bcb","matchNumber":88,"stage":"roundOf32","groupID":null,"team1Ref":"2D","team2Ref":"2G","team1Name":"2D","team2Name":"2G","dateText":"Jul 3, 2026 2:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"1d4a11ce-a780-4f4e-9ba4-ae81462542a9","matchNumber":89,"stage":"roundOf16","groupID":null,"team1Ref":"W74","team2Ref":"W77","team1Name":"W74","team2Name":"W77","dateText":"Jul 4, 2026 5:00 PM","venue":"Philadelphia","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"aeedd960-e69f-4420-977e-21b7db124999","matchNumber":90,"stage":"roundOf16","groupID":null,"team1Ref":"W73","team2Ref":"W75","team1Name":"W73","team2Name":"W75","dateText":"Jul 4, 2026 1:00 PM","venue":"Houston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"1944b1f8-cac0-41d1-9bb5-e83579038181","matchNumber":91,"stage":"roundOf16","groupID":null,"team1Ref":"W76","team2Ref":"W78","team1Name":"W76","team2Name":"W78","dateText":"Jul 5, 2026 4:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"3c13706c-5ec8-45be-929d-65589477f2af","matchNumber":92,"stage":"roundOf16","groupID":null,"team1Ref":"W79","team2Ref":"W80","team1Name":"W79","team2Name":"W80","dateText":"Jul 5, 2026 8:00 PM","venue":"Mexico City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"2e76f376-19f3-449f-bd63-16249177fdda","matchNumber":93,"stage":"roundOf16","groupID":null,"team1Ref":"W83","team2Ref":"W84","team1Name":"W83","team2Name":"W84","dateText":"Jul 6, 2026 3:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0c29123f-8b93-47ea-8f5e-eebdd32eaed5","matchNumber":94,"stage":"roundOf16","groupID":null,"team1Ref":"W81","team2Ref":"W82","team1Name":"W81","team2Name":"W82","dateText":"Jul 6, 2026 8:00 PM","venue":"Seattle","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"6f72ae73-f05d-49c3-b551-c62206513b96","matchNumber":95,"stage":"roundOf16","groupID":null,"team1Ref":"W86","team2Ref":"W88","team1Name":"W86","team2Name":"W88","dateText":"Jul 7, 2026 12:00 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"8ab00277-8a59-49fd-8a2a-149b26b98152","matchNumber":96,"stage":"roundOf16","groupID":null,"team1Ref":"W85","team2Ref":"W87","team1Name":"W85","team2Name":"W87","dateText":"Jul 7, 2026 4:00 PM","venue":"Vancouver","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"ec2c3c2f-cfdb-4930-bac3-136d9f6a09f9","matchNumber":97,"stage":"quarterfinal","groupID":null,"team1Ref":"W89","team2Ref":"W90","team1Name":"W89","team2Name":"W90","dateText":"Jul 9, 2026 4:00 PM","venue":"Boston","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"693b0909-d919-4d1d-befc-18eb3cb3ba0b","matchNumber":98,"stage":"quarterfinal","groupID":null,"team1Ref":"W93","team2Ref":"W94","team1Name":"W93","team2Name":"W94","dateText":"Jul 10, 2026 3:00 PM","venue":"Los Angeles","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"39f532ab-a387-40e3-8c58-47f1d0968c52","matchNumber":99,"stage":"quarterfinal","groupID":null,"team1Ref":"W91","team2Ref":"W92","team1Name":"W91","team2Name":"W92","dateText":"Jul 11, 2026 5:00 PM","venue":"Miami","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"74bd914a-5aef-4acf-b06a-530931d69316","matchNumber":100,"stage":"quarterfinal","groupID":null,"team1Ref":"W95","team2Ref":"W96","team1Name":"W95","team2Name":"W96","dateText":"Jul 11, 2026 9:00 PM","venue":"Kansas City","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"ee57d771-dca7-45db-b912-6e84489cd151","matchNumber":101,"stage":"semifinal","groupID":null,"team1Ref":"W97","team2Ref":"W98","team1Name":"W97","team2Name":"W98","dateText":"Jul 14, 2026 3:00 PM","venue":"Dallas","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"0d38107a-920d-459f-86bd-59c0883e1184","matchNumber":102,"stage":"semifinal","groupID":null,"team1Ref":"W99","team2Ref":"W100","team1Name":"W99","team2Name":"W100","dateText":"Jul 15, 2026 3:00 PM","venue":"Atlanta","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"daf11419-b5b9-43f9-8562-6e88459e2c5d","matchNumber":103,"stage":"thirdPlace","groupID":null,"team1Ref":"RU101","team2Ref":"RU102","team1Name":"RU101","team2Name":"RU102","dateText":"Jul 18, 2026 5:00 PM","venue":"Miami","status":"scheduled","actualScore1":null,"actualScore2":null},{"id":"56796ec4-df40-4965-ab37-590c1cb2fa2f","matchNumber":104,"stage":"final","groupID":null,"team1Ref":"W101","team2Ref":"W102","team1Name":"W101","team2Name":"W102","dateText":"Jul 19, 2026 3:00 PM","venue":"New York/New Jersey","status":"scheduled","actualScore1":null,"actualScore2":null}],"scoring":{"correctResult":5,"correctGoalDifference":5,"exactScore":10,"highScoringBonus":3,"correctKnockoutWinner":10,"championBonus":30},"flagMap":{}};
+
+  function flagHTML(idOrName){
+    const id = teams[idOrName] ? idOrName : teamIDFromNameOrID(idOrName);
+    const name = id ? teamName(id) : String(idOrName || '');
+    const code = id ? flagPngCodeByTeamID[id] : null;
+    return code ? '<img class="flag" src="https://flagcdn.com/w80/' + escapeHTML(code) + '.png" srcset="https://flagcdn.com/w160/' + escapeHTML(code) + '.png 2x" alt="' + escapeHTML(name) + ' flag" loading="lazy" decoding="async">' : '';
+  }
+  function flagTextForSelect(idOrName){ return ''; }
+  const STORAGE_KEY = 'fifa2026BracketEntry.v5';
+  const teams = Object.fromEntries(T.teams.map(t => [t.id, t]));
+
+  const flagPngCodeByTeamID = {"A1": "mx", "A2": "za", "A3": "kr", "A4": "cz", "B1": "ca", "B2": "ba", "B3": "qa", "B4": "ch", "C1": "br", "C2": "ma", "C3": "ht", "C4": "gb-sct", "D1": "us", "D2": "py", "D3": "au", "D4": "tr", "E1": "de", "E2": "cw", "E3": "ci", "E4": "ec", "F1": "nl", "F2": "jp", "F3": "se", "F4": "tn", "G1": "be", "G2": "eg", "G3": "ir", "G4": "nz", "H1": "es", "H2": "cv", "H3": "sa", "H4": "uy", "I1": "fr", "I2": "sn", "I3": "iq", "I4": "no", "J1": "ar", "J2": "dz", "J3": "at", "J4": "jo", "K1": "pt", "K2": "cd", "K3": "uz", "K4": "co", "L1": "gb-eng", "L2": "hr", "L3": "gh", "L4": "pa"};
+  const matches = T.matches.slice().sort((a,b)=>Number(a.matchNumber)-Number(b.matchNumber));
+  const groupMatches = matches.filter(m => m.stage === 'group');
+  const knockoutMatches = matches.filter(m => m.stage !== 'group');
+  let state = loadState();
+
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+  function escapeHTML(x){ return String(x ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function loadState(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {name:'', predictions:{}}; } catch { return {name:'', predictions:{}}; } }
+  function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); updateChampionBadge(); }
+  function prediction(matchNumber){ const k=String(matchNumber); if(!state.predictions[k]) state.predictions[k]={s1:'',s2:'',winner:''}; if(state.predictions[k].s1 === undefined) state.predictions[k].s1=''; if(state.predictions[k].s2 === undefined) state.predictions[k].s2=''; if(state.predictions[k].winner === undefined) state.predictions[k].winner=''; return state.predictions[k]; }
+  function teamName(id){ return teams[id]?.name || String(id || ''); }
+  function normalizeName(text){ return String(text || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9#]/g,''); }
+  function teamIDFromNameOrID(value){
+    const cleaned = String(value || '').trim();
+    if(!cleaned) return '';
+    if(teams[cleaned]) return cleaned;
+    const n = normalizeName(cleaned);
+    const exact = T.teams.find(t => normalizeName(t.name) === n || normalizeName(t.id) === n);
+    return exact ? exact.id : '';
+  }
+  function parseCSVText(text){
+    const rows=[]; let row=[], field='', inQuotes=false;
+    for(let i=0;i<text.length;i++){
+      const ch=text[i];
+      if(ch==='"'){
+        if(inQuotes && text[i+1]==='"'){ field+='"'; i++; }
+        else { inQuotes=!inQuotes; }
+      } else if(ch===',' && !inQuotes){
+        row.push(field); field='';
+      } else if((ch==='\n' || ch==='\r') && !inQuotes){
+        row.push(field);
+        if(row.some(v => String(v).trim() !== '')) rows.push(row);
+        row=[]; field='';
+        if(ch==='\r' && text[i+1]==='\n') i++;
+      } else { field += ch; }
+    }
+    row.push(field);
+    if(row.some(v => String(v).trim() !== '')) rows.push(row);
+    return rows;
+  }
+  function loadCSVIntoForm(text, useFileName){
+    const rows = parseCSVText(text);
+    if(rows.length < 2) throw new Error('No usable rows found in the CSV.');
+    const header = rows[0].map(h => normalizeName(h));
+    const col = (...names) => header.findIndex(h => names.includes(h));
+    const cParticipant = col('participant','name','person');
+    const cMatch = col('match','matchnumber','matchno','match#');
+    const cMatchKey = col('matchkey','fixturekey','gamekey');
+    const cS1 = col('team1goals','team1score','score1','homegoals','goals1');
+    const cS2 = col('team2goals','team2score','score2','awaygoals','goals2');
+    const cWinner = col('winner','winnerpick','knockoutwinner');
+    const cChampion = col('champion','championpick');
+    if(cMatch < 0 && cMatchKey < 0) throw new Error('The CSV needs a Match or Match Key column.');
+    const next = { name: state.name || '', predictions: {}, champion: '' };
+    let fileName = '';
+    let loaded = 0;
+    for(const raw of rows.slice(1)){
+      const row = raw.concat(Array(Math.max(0, header.length - raw.length)).fill(''));
+      if(useFileName && cParticipant >= 0 && !fileName && row[cParticipant].trim()) fileName = row[cParticipant].trim();
+      let match = null;
+      if(cMatchKey >= 0 && row[cMatchKey].trim()){ match = matches.find(m => matchKey(m) === normalizeName(row[cMatchKey])); }
+      if(!match && cMatch >= 0){ const matchNumber = parseInt(row[cMatch], 10); match = matches.find(m => Number(m.matchNumber) === matchNumber); }
+      if(!match) continue;
+      const matchNumber = Number(match.matchNumber);
+      const p = next.predictions[String(matchNumber)] = next.predictions[String(matchNumber)] || {s1:'',s2:'',winner:''};
+      if(cS1 >= 0 && row[cS1].trim() !== '') p.s1 = Math.max(0, parseInt(row[cS1],10) || 0);
+      if(cS2 >= 0 && row[cS2].trim() !== '') p.s2 = Math.max(0, parseInt(row[cS2],10) || 0);
+      if(cWinner >= 0 && row[cWinner].trim() !== '') p.winner = teamIDFromNameOrID(row[cWinner]);
+      if(cChampion >= 0 && row[cChampion].trim() !== '') next.champion = teamIDFromNameOrID(row[cChampion]);
+      loaded++;
+    }
+    if(useFileName && fileName) next.name = fileName;
+    else next.name = ($('#participantName')?.value || state.name || '').trim();
+    state = next;
+    save();
+    init();
+    showToast('Loaded ' + loaded + ' predictions from CSV');
+  }
+  function teamLabel(id){ return flagHTML(id) + '<span class="teamName">' + escapeHTML(teamName(id)) + '</span>'; }
+  function showToast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1600); }
+  function stageTitle(stage){ return ({round32:'Round of 32',round16:'Round of 16',quarterfinal:'Quarterfinals',semifinal:'Semifinals',thirdPlace:'Third Place',final:'Final'})[stage] || stage; }
+  function matchKey(m){ return normalizeName(String(m.stage || '') + '-' + String(m.team1Ref || '') + '-' + String(m.team2Ref || '')); }
+
+  function calculateStandings(){
+    const byGroup = {};
+    for(const g of T.groups){ byGroup[g.id] = {}; for(const id of g.teamIDs){ const tm=teams[id]; byGroup[g.id][id] = {teamID:id, groupID:g.id, name:tm.name, P:0,W:0,D:0,L:0,GF:0,GA:0,GD:0,PTS:0}; } }
+    for(const m of groupMatches){
+      const p=prediction(m.matchNumber); if(p.s1 === '' || p.s2 === '' || p.s1 == null || p.s2 == null) continue;
+      const s1=Number(p.s1), s2=Number(p.s2); if(!Number.isFinite(s1) || !Number.isFinite(s2)) continue;
+      const a=byGroup[m.groupID]?.[m.team1Ref], b=byGroup[m.groupID]?.[m.team2Ref]; if(!a || !b) continue;
+      a.P++; b.P++; a.GF+=s1; a.GA+=s2; b.GF+=s2; b.GA+=s1; a.GD=a.GF-a.GA; b.GD=b.GF-b.GA;
+      if(s1>s2){ a.W++; b.L++; a.PTS+=3; } else if(s2>s1){ b.W++; a.L++; b.PTS+=3; } else { a.D++; b.D++; a.PTS++; b.PTS++; }
+    }
+    const out={};
+    for(const g of T.groups){ out[g.id] = Object.values(byGroup[g.id]).sort((a,b)=>(b.PTS-a.PTS)||(b.GD-a.GD)||(b.GF-a.GF)||a.name.localeCompare(b.name)); }
+    return out;
+  }
+  function bestThirds(st){ return Object.values(st).map(list=>list[2]).filter(Boolean).sort((a,b)=>(b.PTS-a.PTS)||(b.GD-a.GD)||(b.GF-a.GF)||a.name.localeCompare(b.name)); }
+  function teamForRef(ref){
+    if(!ref) return null; ref=String(ref);
+    if(teams[ref]) return ref;
+    const st = calculateStandings();
+    if(/^[1-4][A-L]$/.test(ref)){ const pos=Number(ref[0])-1, group=ref[1]; return st[group]?.[pos]?.teamID || null; }
+    if(ref.startsWith('3-')){ const allowed=ref.slice(2).split(''); const thirds=bestThirds(st).slice(0,8); const hit=thirds.find(x=>allowed.includes(x.groupID)); return hit?.teamID || null; }
+    if(ref.startsWith('W')) return winnerFor(Number(ref.slice(1)));
+    if(ref.startsWith('RU')) return runnerUpFor(Number(ref.slice(2)));
+    return null;
+  }
+  function teamsForMatch(m){ return [teamForRef(m.team1Ref), teamForRef(m.team2Ref)]; }
+  function winnerFor(matchNumber){ const m=matches.find(x=>Number(x.matchNumber)===Number(matchNumber)); if(!m || m.stage==='group') return null; const [a,b]=teamsForMatch(m); const w=prediction(matchNumber).winner; return (w && (w===a || w===b)) ? w : null; }
+  function runnerUpFor(matchNumber){ const m=matches.find(x=>Number(x.matchNumber)===Number(matchNumber)); if(!m) return null; const [a,b]=teamsForMatch(m); const w=winnerFor(matchNumber); if(!w) return null; return w===a ? b : a; }
+
+  function renderGroups(){
+    const root=$('#groupsContainer'); root.innerHTML='';
+    for(const g of T.groups){
+      const card=document.createElement('section'); card.className='card';
+      card.innerHTML='<h2>'+escapeHTML(g.name)+'</h2>';
+      for(const m of groupMatches.filter(x=>x.groupID===g.id)){
+        const p=prediction(m.matchNumber);
+        const row=document.createElement('div'); row.className='match';
+        row.innerHTML='<div class="matchMeta">Match '+m.matchNumber+' · '+escapeHTML(m.dateText||'')+' · '+escapeHTML(m.venue||'')+'</div><div class="matchRow"><div class="team">'+teamLabel(m.team1Ref)+'</div><div class="score"><input inputmode="numeric" pattern="[0-9]*" type="number" min="0" max="30" data-score="s1" data-match="'+m.matchNumber+'" value="'+escapeHTML(p.s1)+'"><span>-</span><input inputmode="numeric" pattern="[0-9]*" type="number" min="0" max="30" data-score="s2" data-match="'+m.matchNumber+'" value="'+escapeHTML(p.s2)+'"></div><div class="team right">'+teamLabel(m.team2Ref)+'</div></div>';
+        card.appendChild(row);
+      }
+      root.appendChild(card);
+    }
+  }
+  function renderStandings(){
+    const root=$('#standingsContainer'); root.innerHTML=''; const st=calculateStandings();
+    for(const g of T.groups){
+      const card=document.createElement('section'); card.className='card standingsCard';
+      card.innerHTML='<h2>'+escapeHTML(g.name)+'</h2><div class="standing head"><span>#</span><span>Team</span><span>Pts</span><span>GD</span><span>GF</span><span>GA</span></div>';
+      st[g.id].forEach((x,i)=>{ const div=document.createElement('div'); div.className='standing'; div.innerHTML='<strong>'+(i+1)+'</strong><div class="team">'+teamLabel(x.teamID)+'</div><strong>'+x.PTS+'</strong><span>'+x.GD+'</span><span>'+x.GF+'</span><span>'+x.GA+'</span>'; card.appendChild(div); });
+      root.appendChild(card);
+    }
+  }
+  function renderKnockout(){
+    const root=$('#knockoutContainer'); root.innerHTML='';
+    const byStage={}; for(const m of knockoutMatches){ (byStage[m.stage] ||= []).push(m); }
+    for(const stage of ['roundOf32','roundOf16','quarterfinal','semifinal','thirdPlace','final']){
+      const card=document.createElement('div'); card.className='card'; card.innerHTML='<h2>'+stageTitle(stage)+'</h2>';
+      for(const m of (byStage[stage]||[])){
+        const [a,b]=teamsForMatch(m); const p=prediction(m.matchNumber); const row=document.createElement('div'); row.className='match knockout';
+        let options='<option value="">Select winner</option>';
+        for(const id of [a,b].filter(Boolean)){ options += '<option value="'+escapeHTML(id)+'" '+(p.winner===id?'selected':'')+'>'+escapeHTML(teamName(id))+'</option>'; }
+        const team1 = a ? teamLabel(a) : '<span class="placeholder">'+escapeHTML(m.team1Name)+'</span>';
+        const team2 = b ? teamLabel(b) : '<span class="placeholder">'+escapeHTML(m.team2Name)+'</span>';
+        row.innerHTML='<div class="matchMeta">Match '+m.matchNumber+' · '+escapeHTML(m.dateText||'')+' · '+escapeHTML(m.venue||'')+'</div>'+
+          '<div class="matchRow">'+
+          '<div class="team">'+team1+'</div>'+
+          '<strong class="vs">vs</strong>'+
+          '<div class="team right">'+team2+'</div>'+
+          '<div class="koPickBox">'+
+            '<select class="koSelect" data-winner="'+m.matchNumber+'">'+options+'</select>'+
+            '<div class="koScoreLabel">Optional predicted score</div>'+
+            '<div class="koScoreRow">'+
+              '<div class="score"><input inputmode="numeric" pattern="[0-9]*" type="number" min="0" max="30" data-score="s1" data-match="'+m.matchNumber+'" value="'+escapeHTML(p.s1)+'"><span>-</span><input inputmode="numeric" pattern="[0-9]*" type="number" min="0" max="30" data-score="s2" data-match="'+m.matchNumber+'" value="'+escapeHTML(p.s2)+'"></div>'+
+            '</div>'+
+            '<div class="koHint">Leave blank if your pool only scores winners. Fill it if knockout score bonuses are enabled in the app.</div>'+
+          '</div>'+
+          '</div>';
+        card.appendChild(row);
+      }
+      root.appendChild(card);
+    }
+  }
+  function updateChampionBadge(){ const fw=winnerFor(104); if(fw) state.champion=fw; const b=$('#championBadge'); b.innerHTML = fw ? flagHTML(fw)+' '+escapeHTML(teamName(fw)) : 'No champion picked'; }
+
+  function randomInt(max){ return Math.floor(Math.random()*max); }
+  function fillRandomGroups(){ for(const m of groupMatches){ const p=prediction(m.matchNumber); p.s1=randomInt(5); p.s2=randomInt(5); } save(); renderGroups(); renderStandings(); renderKnockout(); showToast('Random group scores filled'); }
+  function fillRandomKnockout(){ for(const m of knockoutMatches){ const [a,b]=teamsForMatch(m); if(a && b){ const p=prediction(m.matchNumber); const winner = Math.random()<0.5 ? a : b; p.winner = winner; let s1=randomInt(5), s2=randomInt(5); if(s1===s2){ if(winner===a) s1++; else s2++; } else if((s1>s2 && winner!==a) || (s2>s1 && winner!==b)){ const tmp=s1; s1=s2; s2=tmp; } p.s1=s1; p.s2=s2; } } state.champion=winnerFor(104)||''; save(); renderKnockout(); renderExportStatus(); showToast('Random knockout picks and optional scores filled'); }
+  function clearAll(){ if(!confirm('Clear all predictions from this browser?')) return; state={name:'', predictions:{}, champion:''}; localStorage.removeItem(STORAGE_KEY); init(); showToast('Cleared'); }
+  function rowsForCSV(){
+    const name=(state.name||'').trim() || 'Unnamed'; const champ=state.champion ? teamName(state.champion) : '';
+    const rows=[['Participant','Match','Match Key','Stage','Team 1 ID','Team 2 ID','Team 1','Team 2','Team 1 Goals','Team 2 Goals','Winner','Champion']];
+    for(const m of matches){
+      const p=prediction(m.matchNumber);
+      const resolved = m.stage === 'group' ? [m.team1Ref, m.team2Ref] : teamsForMatch(m);
+      const team1ID = resolved[0] || m.team1Ref;
+      const team2ID = resolved[1] || m.team2Ref;
+      const team1Name = resolved[0] ? teamName(resolved[0]) : m.team1Name;
+      const team2Name = resolved[1] ? teamName(resolved[1]) : m.team2Name;
+      rows.push([name,m.matchNumber,matchKey(m),stageTitle(m.stage),team1ID,team2ID,team1Name,team2Name,p.s1 ?? '',p.s2 ?? '',p.winner ? teamName(p.winner) : '',champ]);
+    }
+    return rows;
+  }
+  function csvText(){ return rowsForCSV().map(r => r.map(v => '"' + String(v ?? '').replace(/"/g,'""') + '"').join(',')).join('\n'); }
+  function safeFileBase(){ return 'FIFA2026_' + (state.name||'Bracket').replace(/[^a-z0-9]/gi,'_'); }
+  function download(filename, text, type){ const blob=new Blob([text], {type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000); }
+  async function shareSubmission(){
+    const filename = safeFileBase() + '.csv';
+    const text = csvText();
+    const blob = new Blob([text], {type:'text/csv;charset=utf-8'});
+    const file = new File([blob], filename, {type:'text/csv'});
+    try{
+      if(navigator.canShare && navigator.canShare({files:[file]}) && navigator.share){
+        await navigator.share({title:'FIFA 2026 Bracket Submission', text:'My FIFA 2026 bracket submission is attached.', files:[file]});
+        showToast('Share sheet opened');
+        return;
+      }
+      if(navigator.share){
+        await navigator.share({title:'FIFA 2026 Bracket Submission', text:text});
+        showToast('Share sheet opened');
+        return;
+      }
+      if(navigator.clipboard){
+        await navigator.clipboard.writeText(text);
+        showToast('CSV copied. Paste it into a message.');
+        return;
+      }
+      download(filename, text, 'text/csv;charset=utf-8');
+      showToast('CSV downloaded');
+    } catch(e){
+      if(e && e.name === 'AbortError') return;
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast('CSV copied. Paste it into a message.');
+      } catch(_){
+        download(filename, text, 'text/csv;charset=utf-8');
+        showToast('Share blocked. CSV downloaded instead.');
+      }
+    }
+  }
+  function renderExportStatus(){
+    const groupDone=groupMatches.filter(m=>{const p=prediction(m.matchNumber); return p.s1!=='' && p.s2!=='';}).length;
+    const koDone=knockoutMatches.filter(m=>prediction(m.matchNumber).winner).length;
+    const koScores=knockoutMatches.filter(m=>prediction(m.matchNumber).s1!=='' && prediction(m.matchNumber).s2!=='').length;
+    $('#completion').innerHTML='<p><strong>Name:</strong> '+escapeHTML(state.name||'Not entered')+'</p><p><strong>Group scores:</strong> '+groupDone+' / '+groupMatches.length+'</p><p><strong>Knockout winners:</strong> '+koDone+' / '+knockoutMatches.length+'</p><p><strong>Optional knockout scores:</strong> '+koScores+' / '+knockoutMatches.length+'</p><p><strong>Champion:</strong> '+(state.champion?flagHTML(state.champion)+' '+escapeHTML(teamName(state.champion)):'Not picked')+'</p>';
+  }
+  function setTab(tab){ $$('.tabButton').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab)); $$('.tab').forEach(s=>s.classList.toggle('active', s.id===tab)); if(tab==='standings') renderStandings(); if(tab==='knockout') renderKnockout(); if(tab==='export') renderExportStatus(); }
+  function bind(){
+    $('#tabs').addEventListener('click', e=>{ const b=e.target.closest('[data-tab]'); if(b) setTab(b.dataset.tab); });
+    document.body.addEventListener('input', e=>{ if(e.target.matches('[data-score]')){ const p=prediction(e.target.dataset.match); p[e.target.dataset.score] = e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value,10) || 0); save(); } });
+    document.body.addEventListener('change', e=>{ if(e.target.matches('[data-winner]')){ prediction(e.target.dataset.winner).winner=e.target.value; save(); renderKnockout(); } });
+    $('#saveName').addEventListener('click', ()=>{ state.name=$('#participantName').value.trim(); save(); showToast('Name saved'); });
+    $('#loadCSV').addEventListener('click', async()=>{ try{ const file=$('#csvUpload').files[0]; if(!file){ showToast('Choose a CSV file first'); return; } const text=await file.text(); loadCSVIntoForm(text, $('#useNameFromFile').checked); } catch(e){ const box=$('#errorBox'); if(box){ box.style.display='block'; box.textContent='CSV import error: ' + (e && e.message ? e.message : e); } } });
+    $('#randomGroups').addEventListener('click', fillRandomGroups);
+    $('#randomAll').addEventListener('click', ()=>{ fillRandomGroups(); fillRandomKnockout(); showToast('Random bracket filled'); });
+    $('#randomKnockout').addEventListener('click', fillRandomKnockout);
+    $('#clearAll').addEventListener('click', clearAll);
+    $('#refreshStandings').addEventListener('click', renderStandings);
+    $('#shareCSV').addEventListener('click', shareSubmission);
+    $('#downloadCSV').addEventListener('click', ()=>download(safeFileBase() + '.csv', csvText(), 'text/csv;charset=utf-8'));
+    $('#downloadJSON').addEventListener('click', ()=>download(safeFileBase() + '.json', JSON.stringify(state,null,2), 'application/json'));
+    $('#copyCSV').addEventListener('click', async()=>{ try{ await navigator.clipboard.writeText(csvText()); showToast('CSV copied'); } catch(e){ showToast('Clipboard blocked. Use Download CSV.'); } });
+  }
+  function init(){ $('#participantName').value=state.name||''; renderGroups(); renderStandings(); renderKnockout(); renderExportStatus(); updateChampionBadge(); }
+  window.addEventListener('error', function(e){ const box=$('#errorBox'); if(box){ box.style.display='block'; box.textContent='JavaScript error: ' + e.message + '\nLine: ' + e.lineno + '\nColumn: ' + e.colno; } });
+  document.addEventListener('DOMContentLoaded', function(){ bind(); init(); });
+})();
+
+</script>
+</body></html>
